@@ -105,3 +105,91 @@ ESVRO Snap successfully runs on Fedora Linux. Flutter analysis reports no issues
 ## Daily Update History
 
 Future daily progress reports will be appended below this section.
+
+# Day 2 — Project Architecture and Accounting Foundation
+Date: 2026-11-07
+
+## 1. Monorepo Architecture
+
+Established the unified ESVRO repository structure.
+
+Created:
+- apps/esvro_snap
+- apps/esvro_ledger
+- packages/esvro_core
+- packages/esvro_database
+- packages/esvro_design
+- packages/esvro_document
+- packages/esvro_ai
+- packages/esvro_accounting
+
+Created documentation directories:
+- docs/architecture
+- docs/accounting
+- docs/ai
+- docs/compliance
+- tools
+
+## 2. Application Architecture
+
+- ESVRO Snap uses the shared core, database, design, document and AI packages.
+- ESVRO Ledger uses those same shared packages plus the dedicated accounting package.
+- The accounting package is not a dependency of Snap.
+- Both applications are being developed for Android, iOS and Windows, with Linux used for current development and testing.
+
+## 3. Accounting Foundation
+
+Implemented initial deterministic accounting models in packages/esvro_accounting.
+
+Files created:
+- lib/src/models/account_type.dart
+- lib/src/models/money.dart
+- lib/src/models/account.dart
+- lib/src/models/account_balance.dart
+- lib/esvro_accounting.dart
+
+Capabilities:
+- Five fundamental account types.
+- Debit and credit normal balance classification.
+- Integer minor-unit money representation.
+- Currency-aware arithmetic.
+- Account code and name validation.
+- Debit/credit account balance calculation.
+- Preservation of abnormal negative balances for review.
+
+## 4. Verification
+
+| Check | Result |
+|---|---|
+| Dart formatting | Successful |
+| flutter analyze (accounting package) | No issues found |
+| flutter test (accounting package) | All 10 tests passed |
+
+## 5. Architecture Decisions
+
+- Keep accounting calculations deterministic and separate from AI.
+- AI may suggest accounting entries, but the accounting engine must validate them.
+- Accountant approval will control important posting operations.
+- Preserve the separation between owner-side document capture and professional accounting.
+- Continue using integer minor units for monetary calculations to avoid floating-point errors.
+
+## 6. Pending Work
+
+- Implement journal entries and journal lines.
+- Implement debit/credit balancing validation.
+- Add posting and reversal controls.
+- Expand accounting tests.
+- Review and update the shared package architecture.
+- Configure Android build components when required.
+- Add iOS platform scaffolding to Snap.
+- Update project documentation.
+
+## 7. Day 2 Outcome
+
+The unified ESVRO project structure and initial accounting foundation have been created.
+
+The accounting package passes static analysis and all 10 tests.
+
+**Day 2 Status: COMPLETED**
+
+**Next Session:** Day 3 — Journal Entry Engine and Double-Entry Validation.
