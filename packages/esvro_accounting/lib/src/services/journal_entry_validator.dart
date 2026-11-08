@@ -1,3 +1,4 @@
+import '../models/account.dart';
 import '../models/journal/journal_entry.dart';
 
 /// Contains the result of validating a journal entry.
@@ -12,9 +13,37 @@ class JournalValidationResult {
 class JournalEntryValidator {
   const JournalEntryValidator();
 
-  JournalValidationResult validate(JournalEntry entry) {
+  JournalValidationResult validate(
+    JournalEntry entry, {
+    required List<Account> accounts,
+  }) {
     final errors = <String>[];
 
+    // Build a lookup table using account codes.
+    final accountsByCode = {
+      for (final account in accounts) account.code: account,
+    };
+
+    // Check whether every journal line references a valid account.
+    for (final line in entry.lines) {
+      final account = accountsByCode[line.accountCode];
+
+      if (account == null) {
+        errors.add(
+          'Account ${line.accountCode} does not exist in the chart of accounts.',
+        );
+        continue;
+      }
+
+      // Inactive accounts cannot be used in new journal entries.
+      if (!account.isActive) {
+        errors.add(
+          'Account ${line.accountCode} is inactive and cannot be used.',
+        );
+      }
+    }
+
+    // Debits and credits must always be equal.
     if (!entry.isBalanced) {
       errors.add(
         'Journal entry is not balanced: '

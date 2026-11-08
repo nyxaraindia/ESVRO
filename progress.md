@@ -278,3 +278,81 @@ Static analysis reports no issues, and all 20 accounting package tests pass.
 
 **Next Session:** Day 4 — Account Validation, Posting Safeguards and Transaction Integrity.
 
+
+---
+
+# Day 4 — Account Validation, Posting Safeguards and Audit Events
+
+## 1. Completed Work
+
+Implemented and tested the first controlled journal posting and audit-event workflow in `packages/esvro_accounting`.
+
+Created:
+- `lib/src/models/audit/journal_audit_event.dart`
+- `lib/src/services/journal_posting_service.dart`
+- `test/journal_posting_service_test.dart`
+
+Updated:
+- `lib/esvro_accounting.dart`
+- `lib/src/services/journal_entry_validator.dart`
+- `test/journal_entry_validator_test.dart`
+
+## 2. Posting Safeguards
+
+The posting service now:
+- Validates journal debit and credit totals.
+- Checks that referenced accounts exist and are active.
+- Rejects empty actor IDs.
+- Prevents duplicate posting of the same journal entry ID.
+- Records the posting timestamp in UTC.
+- Associates the posting with the actor who performed it.
+
+## 3. Audit Events
+
+Implemented the initial `JournalAuditEvent` model.
+
+A successful posting creates an audit event containing:
+- Event ID.
+- Journal entry ID.
+- Action.
+- Actor ID.
+- UTC occurrence timestamp.
+
+The posting record and its audit event share the same timestamp.
+
+Public history getters return unmodifiable lists.
+
+## 4. Verification
+
+| Check | Result |
+|---|---|
+| Dart formatting | Successful |
+| flutter analyze | No issues found |
+| flutter test | All 32 tests passed |
+
+Tests cover successful posting, UTC timestamps, duplicate prevention, missing and inactive accounts, actor validation, audit-event details, shared timestamps and immutable history lists.
+
+## 5. Architecture Decisions and Limitations
+
+- Accounting validation and posting remain deterministic; AI does not control journal posting.
+- Timestamps are stored in UTC. India-facing screens should display them in IST.
+- This implementation currently stores posted entries and audit events in memory only.
+- It does not yet provide durable database transactions, crash recovery or tamper-proof audit storage.
+- Audit event ID generation still needs a collision-safe strategy for production use.
+- Posted-entry reversal and correction workflows have not yet been implemented.
+
+## 6. Pending Work
+
+- Design and implement reversal entries that reference the original posted entry.
+- Ensure corrections never silently overwrite posted history.
+- Introduce persistent database storage and atomic posting-plus-audit transactions.
+- Design stronger audit integrity and recovery safeguards.
+- Continue shared architecture development and app integration.
+
+## 7. Day 4 Outcome
+
+The first in-memory controlled posting service and audit-event workflow have been implemented and verified.
+
+**Day 4 Status: CORE POSTING AND AUDIT PROTOTYPE COMPLETED**
+
+**Next Session:** Day 5 — Reversal Workflows and Transaction Integrity Design.
