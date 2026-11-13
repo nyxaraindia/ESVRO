@@ -8,6 +8,8 @@
 **Status:** In Progress
 
 ---
+## Objective
+Understand what programming and algorithms are, learn input-processing-output logic, solve basic shop billing problems, and write and execute your first independent Dart program.
 
 # 1. Today's Learning Goals
 
@@ -541,3 +543,41 @@ Next lesson: Complete Day 1 Dart quiz and first Dart coding exercise.
 
 The goal is to become capable of independently designing,
 writing, testing and debugging ESVRO.
+
+---
+
+# Day 1 — Lesson 6: First Dart Program (Completed)
+
+## 1. Dart and Flutter
+
+- Dart is the programming language used to write ESVRO's application logic.
+- Flutter is the framework used to build ESVRO's user interface and cross-platform applications.
+
+## 2. Dart concepts learned
+
+| Concept | Meaning |
+|---|---|
+| `void` | Indicates that a function does not return a value. |
+| `main()` | Starting function of a normal Dart program. |
+| `int` | Data type for whole numbers. |
+| `=` | Assigns a value to a variable. |
+| `*` | Multiplication operator. |
+| `print()` | Displays information in the output. |
+| `;` | Marks the end of a Dart statement. |
+| `{ }` | Defines a block of code. |
+
+## 3. First Dart program
+
+Practice file:
+
+`02_DART/practice/day01_first_program.dart`
+
+User independently wrote:
+
+```dart
+void main() {
+  int price=30;
+  int quantity=5;
+  int total=price*quantity;
+  print("Total: $total");
+}
