@@ -1,6 +1,6 @@
 # ESVRO — Business AI Accountant
 
-ESVRO is a two-app bookkeeping ecosystem that helps businesses capture financial records and helps accountants review them. It is built with Flutter and SQLite, with a clear separation between deterministic bookkeeping and optional AI assistance.
+ESVRO is a two-app bookkeeping ecosystem that helps businesses capture financial records and helps accountants review them. It is built with Flutter and SQLite, with a clear separation between deterministic bookkeeping logic and AI-assisted workflows.
 
 ## The ESVRO apps
 
@@ -33,7 +33,7 @@ ESVRO/
 
 ## Getting started
 
-Install the [Flutter SDK](https://docs.flutter.dev/get-started/install), then open the app you want to work on. From that app's directory, fetch its dependencies and launch it on a configured device or emulator:
+Install the [Flutter SDK](https://docs.flutter.dev/get-started/install), then open the app you want to work on. From that app's directory, fetch its dependencies and launch it on a configured device or emulator.
 
 ```bash
 cd "ESVRO APP/apps/esvro_snap"
@@ -53,4 +53,6 @@ Contributions and feedback are welcome. Please keep changes aligned with ESVRO's
 
 ## License
 
-No license has been specified yet. Until one is added, all rights are reserved by the repository's copyright holder.
+© 2026 NYXARA_IN. All rights reserved.
+
+This project and all associated source code, design materials, and documentation are the exclusive property of NYXARA_IN. No part of this repository may be copied, modified, distributed, or used in any form without the prior written permission of NYXARA_IN.
